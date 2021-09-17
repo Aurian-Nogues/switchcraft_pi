@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='en'>
+<meta name="viewport" content="width=device-width">
+    <head>
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            background-color: black;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+
+        }
+
+        .container-landscape {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+
+        .container-portrait {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .container-landscape img {
+            width: fit-content;
+            height: 100%;
+        }
+
+        .container-portrait img {
+            width: 100%;
+            height: fit-content;
+        }
+
+    </style>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            if (window.innerHeight > window.innerWidth){
+                document.getElementById('image-container').className = "container-portrait";
+            } else {
+                document.getElementById('image-container').className = "container-landscape";
+            }   
+        })
+        </script>
+    </head>
+
+    <body>  
+        <div class='container-landscape' id='image-container'>
+            <img src="static/no_wifi_image.jpeg" alt="No wifi">
+        </div>
+    </body>
+</html>

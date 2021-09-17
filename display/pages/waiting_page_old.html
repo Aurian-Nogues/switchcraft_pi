@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+<meta name="viewport" content="width=device-width">
+    <head>
+
+    <style>
+
+    body {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+
+    /* Absolute Center Spinner */
+.loading {
+    position: fixed;
+    z-index: 999;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: fit-content;
+    height:fit-content;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loading p {
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 40px;
+      font-weight: 500;
+  }
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+    </style>
+
+    </head>
+
+    <body>
+            <div class="loading">
+                <p>No NFT loaded</p>
+                <p>https://frame-zero.herokuapp.com/</p>
+                <div class="loader"></div>
+            </div>
+    </body>
+
+
+</html>

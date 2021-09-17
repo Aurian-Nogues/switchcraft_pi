@@ -1,0 +1,11 @@
+bisturi==0.5.0
+bluezero==0.6.0
+dbus-python==1.2.16
+pkg-resources==0.0.0
+pycairo==1.20.0
+PyGObject==3.40.1
+python-networkmanager==2.2
+selenium==3.141.0
+six==1.16.0
+uptime==3.0.1
+urllib3==1.26.4

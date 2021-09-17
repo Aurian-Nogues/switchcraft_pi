@@ -1,0 +1,10 @@
+[Unit]
+Description=MainProgram_service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/pi/frame_pi/venv/bin/python3 /home/pi/frame_pi/main.py
+
+[Install]
+WantedBy=multi-user.target
