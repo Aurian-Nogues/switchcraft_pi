@@ -9,6 +9,8 @@ from frame_utilities import load_frame_variables
 from subprocess import call
 
 from display.display_trigger import DisplayTrigger
+import RPi.GPIO as GPIO 
+
 
 frame_variables = load_frame_variables()
 frame_name = frame_variables['frame_name']
@@ -16,6 +18,35 @@ frame_name = frame_variables['frame_name']
 
 DEVICE_NAME = frame_name
 PAIRING_ENABLED = False #supported reliably only by iOS devices
+
+
+# PI GPIO variables for button
+GPIO.setmode(GPIO.BCM) 
+GPIO.setwarnings(False) # Ignore warning for now
+SEND_PI_ON_SIGNAL = 21
+SEND_NANO_PIN = 20
+RECEIVE_NANO_PIN=16
+
+# this is the pi ON signal. If it is not sending low any other pi signal will be ignored
+# this is to make sure the Nano is not affected by noise when Pi is off
+GPIO.setup(SEND_PI_ON_SIGNAL, GPIO.OUT) 
+GPIO.output(SEND_PI_ON_SIGNAL, GPIO.LOW)
+
+# default no signal is HIGH, send low to trigger shutdown sequence
+GPIO.setup(SEND_NANO_PIN, GPIO.OUT) 
+GPIO.output(SEND_NANO_PIN, GPIO.HIGH)
+
+# Pi will expect a constant HIGH signal, will shutdown on LOW
+GPIO.setup(RECEIVE_NANO_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+
+
+
+def button_callback(channel):
+    print('Trigger shutdown sequence from button')
+    call("sudo shutdown --poweroff now", shell=True)
+
+GPIO.add_event_detect(RECEIVE_NANO_PIN, GPIO.FALLING, callback = button_callback)
+
 
 def main(adapter_address):
     """Creation of peripheral"""
@@ -65,7 +96,11 @@ def main(adapter_address):
 
         # poweroff request message
         if message_dict['type'] == 'poweroff_request':
+            print('Trigger shutdown sequence from bluetooth')
+            GPIO.output(SEND_NANO_PIN, GPIO.LOW)
             call("sudo shutdown --poweroff now", shell=True)
+
+
 
     dev.on_customdata = on_customdata
     # Publish peripheral and start event loop

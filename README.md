@@ -80,6 +80,7 @@ $ source ble-env/bin/activate
 (ble-env) $ pip3 install bisturi
 (ble-env) $ pip3 install uptime
 (ble-env) $ pip3 install python-networkmanager
+(ble-env) $ pip3 install gpiozero
 (ble-env) $ sudo ble-env/bin/python3.7 main.py
 ```
 
@@ -140,7 +141,7 @@ that should be a clean boot
 
 ### 
 hide mouse
-sudo apt install unclutter 
+sudo apt-get install unclutter
 add unclutter -idle 0 & at beginning of bash script
 
 
