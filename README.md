@@ -194,6 +194,7 @@ add the last line at very end
 ```
 disable_splash=1
 ```
+press CTRL + X -> Y to save and close
 
 ### change output of pi console
 ```
@@ -203,6 +204,8 @@ In this file you will finde a string of parameters all in line 1. Its important 
 ```
 consoleblank=1 logo.nologo quiet loglevel=0 plymouth.enable=0 vt.global_cursor_default=0 plymouth.ignore-serial-consoles splash fastboot noatime nodiratime noram
 ```
+press CTRL + X -> Y to save and close
+
 
 ### boot with video or splash screen
 ```
@@ -218,6 +221,7 @@ In rc.local add before the end where it says exit 0 these two lines. Don‘t for
 dmesg --console-off
 omxplayer ~/switchcraft_pi/boot_assets/boot_video.mp4 &
 ```
+press CTRL + X -> Y to save and close
 
 ### finish
 ```
