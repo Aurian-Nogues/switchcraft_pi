@@ -20,6 +20,7 @@ Additional tutorials to build a button for SwitchCraft using a Nano board can be
 sudo apt install network-manager
 sudo apt install libgirepository1.0-dev
 sudo apt install libcairo2-dev
+sudo apt-get install unclutter
 ```
 We use Selenium to display the NFTs through Chromium.
 However, Chromium drivers recommended by Selenium do not work with the Pi ARM chips.
@@ -180,17 +181,6 @@ install prerequisites
 sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox
 ```
 
-## Disable screensavers and power management
-Edit autostart file:
-```
-sudo nano /etc/xdg/openbox/autostart
-```
-Insert those lines:
-```
-xset s off
-xset s noblank
-xset -dpms
-```
 
 ## Disable starting logs and replace them with a boot video
 Credit:
@@ -226,7 +216,7 @@ sudo nano /etc/rc.local
 In rc.local add before the end where it says exit 0 these two lines. Don‘t forget to replace my path to the video with yours. You can use all kind of formats, avi, mp4 and more should all work fine as well.
 ```
 dmesg --console-off
-omxplayer /home/pi/myvideo.mp4 &
+omxplayer ~/switchcraft_pi/boot_assets/boot_video.mp4 &
 ```
 
 ### finish
@@ -234,13 +224,6 @@ omxplayer /home/pi/myvideo.mp4 &
 sudo reboot
 ```
 You should get a clean boot
-
-### hide mouse
-```
-sudo apt-get install unclutter
-```
-
-add unclutter -idle 0 & at beginning of bash script
 
 
 ## Debugging / tinkering
@@ -250,8 +233,25 @@ However, the Python scripts will continue running in the background. To shut the
 ```
 ps -ef | grep python
 ```
+
 Then kill them using
 ```
 sudo kill 9 <script number>
-
 ```
+
+If everything works well, you will not see your mouse if plugging one to the Pi.
+This is because of unclutter which is a program hiding the mouse called with the startup script.
+If you want to disable it do the following:
+```
+sudo nano switchcraft_pi/execute.sh 
+```
+Change the line 
+```
+unclutter -idle 0 &
+```
+into 
+```
+# unclutter -idle 0 &
+```
+Exit (CTRL + X -> y)
+Remove the # when you want to hide the mouse again
