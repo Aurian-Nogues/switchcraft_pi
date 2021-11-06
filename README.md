@@ -44,7 +44,7 @@ Add the following line at the end of the file:
 ```
 denyinterfaces wlan0
 ```
-prexx CTRL + X -> Y to save and close
+press CTRL + X -> Y to save and close
 
 ### confiugure network manager to control wlan0
 Type this command to open the text editor:
@@ -60,7 +60,7 @@ dhcp=internal
 [ifupdown]
 managed=true
 ```
-prexx CTRL + X -> Y to save and close
+press CTRL + X -> Y to save and close
 
 Restart the Pi for modifications to take effect
 ```
@@ -154,6 +154,8 @@ add at the end:
 ```
 @bash /home/pi/switchcraft_pi/execute.sh
 ```
+press CTRL + X -> Y to save and close
+
 We need to enable execution of this script like we did with the previous file, type the following commands
 ```
 cd switchcraft_pi/
