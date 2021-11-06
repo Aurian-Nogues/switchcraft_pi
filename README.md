@@ -216,7 +216,7 @@ Next we tell the pi in the rc.local to play our video on boot:
 ```
 sudo nano /etc/rc.local
 ```
-In rc.local add before the end where it says exit 0 these two lines. Don‘t forget to replace my path to the video with yours. You can use all kind of formats, avi, mp4 and more should all work fine as well.
+In rc.local add before the end where it says exit 0 these two lines.
 ```
 dmesg --console-off
 omxplayer ~/switchcraft_pi/boot_assets/boot_video.mp4 &
