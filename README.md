@@ -114,7 +114,7 @@ sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 ```
 add at the end:
 ```
-@lxterminal -e "/home/pi/frame_pi/execute.sh"
+@lxterminal -e "/home/pi/switchcraft_pi/execute.sh"
 ```
 then:
 ```
