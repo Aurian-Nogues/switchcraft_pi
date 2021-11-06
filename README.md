@@ -21,6 +21,7 @@ sudo apt install network-manager
 sudo apt install libgirepository1.0-dev
 sudo apt install libcairo2-dev
 sudo apt-get install unclutter
+sudo apt-get install omxplayer
 ```
 We use Selenium to display the NFTs through Chromium.
 However, Chromium drivers recommended by Selenium do not work with the Pi ARM chips.
@@ -146,8 +147,10 @@ You should not get any feedback in the console
 Switchcraft uses a web browser to load pages to display NFTs.
 This web browser is controlled by Selenium which itself is controlled by our main python script, taking orders from the app, passing them to selenium which itself will display the right page in the web browser.
 This part enables Selenium to run on startup.
+As we will be editing the autostart file, we will also write the command to play a video while the Pi is booting
 
-Type this command to open the file containing the list of programs to start on startup
+<!-- Type this command to open the file containing the list of programs to start on startup
+This was replaced with sudo nano /etc/rc.local, leaving commented out because it also works but it has a small delay
 ```
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 ```
@@ -155,7 +158,19 @@ add at the end:
 ```
 @bash /home/pi/switchcraft_pi/execute.sh
 ```
-press CTRL + X -> Y to save and close
+press CTRL + X -> Y to save and close -->
+
+Edit this file by typing:
+```
+sudo nano /etc/rc.local
+```
+At the end of the file but before the exit 0 line, add the following lines:
+```
+dmesg --console-off
+sudo -u pi bash -c /home/pi/switchcraft_pi/execute.sh &
+omxplayer home/pi/switchcraft_pi/boot_assets/boot_video.mp4
+```
+press CTRL + X -> Y to save and close 
 
 We need to enable execution of this script like we did with the previous file, type the following commands
 ```
@@ -203,23 +218,6 @@ sudo nano /boot/cmdline.txt
 In this file you will finde a string of parameters all in line 1. Its important that you add the following exactly at the end of the existing line 1, starting with a space between the exisitng and new. So lets add:
 ```
 consoleblank=1 logo.nologo quiet loglevel=0 plymouth.enable=0 vt.global_cursor_default=0 plymouth.ignore-serial-consoles splash fastboot noatime nodiratime noram
-```
-press CTRL + X -> Y to save and close
-
-
-### boot with video or splash screen
-```
-sudo apt-get install omxplayer
-```
-
-Next we tell the pi in the rc.local to play our video on boot:
-```
-sudo nano /etc/rc.local
-```
-In rc.local add before the end where it says exit 0 these two lines.
-```
-dmesg --console-off
-omxplayer ~/switchcraft_pi/boot_assets/boot_video.mp4 &
 ```
 press CTRL + X -> Y to save and close
 
