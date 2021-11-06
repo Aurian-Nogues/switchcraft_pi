@@ -66,7 +66,7 @@ Restart the Pi for modifications to take effect
 ```
 sudo reboot
 ```
-If this worked, you should only see one instance of wpa_supplicant when running this command:
+Type this if you want to see all available supplicants (this step is not needed to setup SwitchCraft) 
 ```
 ps axu | grep supplicant
 ```
