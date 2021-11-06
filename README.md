@@ -99,16 +99,54 @@ pip3 install -r requirements.txt
 ### get scripts to automatically start when the Pi starts
 
 #### start scripts before desktop starts
-take mainPrgrm.service file from switchcraft_pi
-copy to /etc/systemd/system
-# need to add command here
+##### main Python script (Bluetooth receiver, Wifi controller, interactions with SwitchCraft app)
+take mainPrgrm.service file from switchcraft_pi and 
+copy to /etc/systemd/system using this command:
 
+```
+sudo cp ~/switchcraft_pi/mainPrgm.service  /etc/systemd/system
+```
+Navigate to the folder and check that mainPrgrm.services is there (along with a lot of other files that were already there from OS install)
+```
+cd /etc/systemd/system
+ls
+```
+We now need to enable this file to be executed by scripts.
+Linux by defaults contrains execution permissions, type the following command while in /etc/systemd/system to see current permissions
+```
+ls lf mainPrgm.service
+```
+You should see something like this
+```
+-rw-r--r-- 1 root root 193 Nov  6 11:02 mainPrgm.service
+```
+Type the following command to change permissions
+```
+sudo chmod 777 mainPrgm.service 
+```
+If you type 
+```
+ls lf mainPrgm.service
+```
+You should now see something like this which means this script can now be read, written and executed by all users of the pi
+```
+-rwxrwxrwx 1 root root 193 Nov  6 11:02 mainPrgm.service
+```
+
+Type the following commands to enable the program to run on startup
 ```
 sudo systemctl enable mainPrgm
 sudo systemctl start mainPrgm
 ```
+You should not get any feedback in the console
 
-for lxsession:
+
+#### Script to control web browser
+Switchcraft uses a web browser to load pages to display NFTs.
+This web browser is controlled by Selenium which itself is controlled by our main python script, taking orders from the app, passing them to selenium which itself will display the right page in the web browser.
+This part enables Selenium to run on startup.
+
+Type this command to open the file containing the list of programs to start on startup
 ```
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 ```
@@ -116,10 +154,20 @@ add at the end:
 ```
 @lxterminal -e "/home/pi/switchcraft_pi/execute.sh"
 ```
-then:
+We need to enable execution of this script like we did with the previous file, type the following commands
 ```
-chmod 644 all scripts and files to execute
+cd switchcraft_pi/
+sudo chmod 777 execute.sh 
 ```
+Check that the change in permissions worked:
+```
+ls -l execute.sh 
+```
+You should see something like this:
+```
+-rwxrwxrwx 1 pi pi 427 Nov  6 10:59 execute.sh
+```
+
 
 # Cleanup the Pi startup sequence so it boots nicely into SwitchCraft
 Credit:
