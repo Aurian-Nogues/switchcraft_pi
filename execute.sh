@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # hide cursor
-# unclutter -idle 0 &
+unclutter -idle 0 &
 
 # commands to prevent screen sleeping
 
