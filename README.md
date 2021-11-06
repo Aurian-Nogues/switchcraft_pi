@@ -60,6 +60,8 @@ dhcp=internal
 [ifupdown]
 managed=true
 ```
+prexx CTRL + X -> Y to save and close
+
 Restart the Pi for modifications to take effect
 ```
 sudo reboot
