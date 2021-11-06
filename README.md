@@ -116,7 +116,7 @@ ls
 We now need to enable this file to be executed by scripts.
 Linux by defaults contrains execution permissions, type the following command while in /etc/systemd/system to see current permissions
 ```
-ls lf mainPrgm.service
+ls -l mainPrgm.service
 ```
 You should see something like this
 ```
