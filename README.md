@@ -152,7 +152,7 @@ sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 ```
 add at the end:
 ```
-@lxterminal -e "/home/pi/switchcraft_pi/execute.sh"
+@bash /home/pi/switchcraft_pi/execute.sh
 ```
 We need to enable execution of this script like we did with the previous file, type the following commands
 ```
