@@ -116,7 +116,7 @@ ls
 We now need to enable this file to be executed by scripts.
 Linux by defaults contrains execution permissions, type the following command while in /etc/systemd/system to see current permissions
 ```
-ls lf mainPrgm.service
+ls -l mainPrgm.service
 ```
 You should see something like this
 ```
@@ -171,21 +171,6 @@ sudo -u pi bash -c /home/pi/switchcraft_pi/execute.sh &
 omxplayer home/pi/switchcraft_pi/boot_assets/boot_video.mp4
 ```
 press CTRL + X -> Y to save and close 
-
-We need to enable execution of this script like we did with the previous file, type the following commands
-```
-cd switchcraft_pi/
-sudo chmod 777 execute.sh 
-```
-Check that the change in permissions worked:
-```
-ls -l execute.sh 
-```
-You should see something like this:
-```
--rwxrwxrwx 1 pi pi 427 Nov  6 10:59 execute.sh
-```
-
 
 # Cleanup the Pi startup sequence so it boots nicely into SwitchCraft
 Credit:
