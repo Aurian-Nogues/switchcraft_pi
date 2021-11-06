@@ -40,7 +40,7 @@ Type this command to open the text editor:
 ```
 sudo nano /etc/dhcpcd.conf
 ```
-Add the following line:
+Add the following line at the end of the file:
 ```
 denyinterfaces wlan0
 ```
