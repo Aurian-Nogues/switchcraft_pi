@@ -128,7 +128,7 @@ sudo chmod 777 mainPrgm.service
 ```
 If you type 
 ```
-ls lf mainPrgm.service
+ls -l mainPrgm.service
 ```
 You should now see something like this which means this script can now be read, written and executed by all users of the pi
 ```
