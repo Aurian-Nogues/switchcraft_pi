@@ -21,7 +21,6 @@ sudo apt install network-manager
 sudo apt install libgirepository1.0-dev
 sudo apt install libcairo2-dev
 sudo apt-get install unclutter
-sudo apt-get install omxplayer
 ```
 We use Selenium to display the NFTs through Chromium.
 However, Chromium drivers recommended by Selenium do not work with the Pi ARM chips.
@@ -168,9 +167,16 @@ At the end of the file but before the exit 0 line, add the following lines:
 ```
 dmesg --console-off
 sudo -u pi bash -c /home/pi/switchcraft_pi/execute.sh &
-omxplayer home/pi/switchcraft_pi/boot_assets/boot_video.mp4
 ```
 press CTRL + X -> Y to save and close 
+
+
+We used to add omxplayer home/pi/switchcraft_pi/boot_assets/boot_video.mp4 after the execute.sh to boot on video.
+However, OMXplayer is no longer supported by new Pi OS and VLC doesn't work on boot out of the box so need work to fix it.
+replacement along the lines of
+```
+vlc -f ~/switchcraft_pi/boot_assets/boot_video.mp4 &
+```
 
 # Cleanup the Pi startup sequence so it boots nicely into SwitchCraft
 Credit:
